@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammad Abdullah Zafar Ghauri</title>
+<meta name="description" content="Portfolio of Muhammad Abdullah Zafar Ghauri: research in heat transfer, fluid mechanics and physics-informed machine learning.">
+<style>
+/* Layout: academic homepage. White page, navy rule, one section shown at a time under a sticky ribbon. */
+:root{
+  --bg:#FFFFFF; --panel:#F7F8FA; --ink:#1B1F24; --muted:#5B636D; --line:#DADDE2;
+  --accent:#1F3A5F; --accent-soft:#E9EEF5;
+  --serif:"Times New Roman",Times,"Liberation Serif","Nimbus Roman",serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font:400 1.08rem/1.6 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.2;text-wrap:balance;margin:0;color:var(--ink)}
+p{margin:0;max-width:70ch}
+.inner{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar .inner{display:grid;gap:.4rem;padding-block:.9rem 0}
+.brand{font-size:1.15rem;font-weight:700;letter-spacing:.01em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-weight:400;font-size:.85rem;color:var(--muted);letter-spacing:0}
+.ribbon{display:flex;flex-wrap:wrap;gap:0 1.15rem;margin-bottom:-1px}
+.ribbon a{font-size:.94rem;color:var(--muted);text-decoration:none;padding:.55rem 0 .6rem;border-bottom:2px solid transparent;white-space:nowrap}
+.ribbon a:hover{color:var(--ink)}
+.ribbon a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+@media (max-width:760px){.ribbon{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.ribbon::-webkit-scrollbar{display:none}}
+
+main{padding-block:2.5rem 3rem}
+.label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Sections as pages */
+main > section{display:grid;gap:1.6rem}
+main > section > .label{color:var(--accent);font-weight:700;border-bottom:1px solid var(--accent);padding-bottom:.4rem}
+main > section > div{min-width:0;display:grid;gap:1.6rem}
+section h2{font-size:1.9rem;font-weight:700}
+
+/* Home */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center}
+.avatar{width:8.5rem;aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:700 2.4rem var(--serif);letter-spacing:.04em}
+.hero h1{font-size:clamp(2rem,5vw,2.9rem);font-weight:700}
+.hero .tag{font-size:1.2rem;color:var(--muted);margin-top:.5rem}
+.hero .chips{margin-top:1rem}
+.profiles{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;margin-top:.9rem;font-size:.98rem}
+.profiles a{text-decoration:none;border-bottom:1px solid var(--line)}
+.profiles a:hover{border-bottom-color:var(--accent)}
+.bio{display:grid;gap:1rem;font-size:1.12rem}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem 2rem}
+.fact h3{font-size:1.05rem;font-weight:700;margin-bottom:.25rem}
+.fact p{font-size:1rem}
+.fact .meta{margin-top:.2rem}
+.explore{display:flex;flex-wrap:wrap;gap:.5rem}
+.explore a{font-size:.95rem;text-decoration:none;border:1px solid var(--line);padding:.35rem .8rem;border-radius:3px;color:var(--ink)}
+.explore a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Shared pieces */
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{font-size:.85rem;border:1px solid var(--line);padding:.15rem .6rem;border-radius:2px;background:var(--bg);color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1rem}
+.stat{border-top:2px solid var(--accent);background:var(--panel);padding:.8rem 1rem}
+.stat strong{display:block;font:700 1.9rem/1.1 var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .label{letter-spacing:.06em}
+.group{font-size:1.2rem;font-weight:700;display:flex;align-items:baseline;gap:.7rem;padding-top:.6rem;border-bottom:1px solid var(--line);padding-bottom:.35rem}
+.entry{display:grid;gap:.45rem}
+.entry > h3{font-size:1.25rem;font-weight:700}
+.meta{font-size:.92rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.1rem 1.1rem;font-style:italic}
+.outcome{font-size:1rem;border-left:2px solid var(--accent);padding-left:.8rem}
+.outcome b{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-right:.5rem}
+.sub{margin:.1rem 0 0;padding-left:1.2rem;display:grid;gap:.35rem;max-width:70ch}
+.sub b{font-weight:700}
+.sup{font-size:.98rem;color:var(--muted)}
+.sup b{color:var(--ink)}
+.pdfs{display:flex;flex-wrap:wrap;gap:.4rem}
+.pdfs a{font-size:.88rem;text-decoration:none;border:1px solid var(--accent);color:var(--accent);padding:.2rem .65rem;border-radius:2px}
+.pdfs a::after{content:" \2197"}
+.pdfs a:hover{background:var(--accent);color:#fff}
+
+/* Publications */
+.pub{display:grid;gap:.4rem;border:1px solid var(--line);border-left:3px solid var(--accent);padding:1rem 1.2rem;background:var(--bg)}
+.pub h4{font-size:1.12rem;font-weight:700;line-height:1.35;text-wrap:pretty}
+.pub-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;font-size:.82rem;letter-spacing:.06em}
+.venue{color:var(--accent);text-transform:uppercase;font-weight:700}
+.role{color:var(--muted);border:1px solid var(--line);padding:0 .5rem;border-radius:2px}
+.role.first{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-soft)}
+.authors{font-size:.98rem;color:var(--muted)}
+.authors b{color:var(--ink)}
+.summary{font-size:1.02rem}
+.ref{font-size:.92rem;color:var(--muted);overflow-wrap:anywhere}
+.doi{font-size:.9rem}
+
+/* Projects */
+.proj-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.proj{display:flex;flex-direction:column;gap:.5rem;border:1px solid var(--line);padding:1.1rem 1.2rem}
+.proj h3{font-size:1.12rem;font-weight:700;line-height:1.3}
+.proj p{font-size:.98rem}
+.proj .chips{margin-top:auto;padding-top:.3rem}
+.proj .chip{font-size:.78rem}
+.proj-head{display:flex;justify-content:space-between;gap:.3rem 1rem;flex-wrap:wrap;font-size:.82rem;letter-spacing:.06em}
+.proj-head .date{color:var(--muted)}
+.team{font-size:.9rem;color:var(--muted);font-style:italic}
+
+/* Reports */
+.filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.filter{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:.25rem .75rem;cursor:pointer}
+.filter span{color:var(--muted);margin-left:.2rem}
+.filter:hover{border-color:var(--accent)}
+.filter[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.filter[aria-pressed="true"] span{color:#fff;opacity:.8}
+.rep-groups{display:grid;gap:2rem}
+.rep-group{display:grid;gap:.3rem}
+.reps{list-style:none;margin:0;padding:0;display:grid}
+.rep{display:grid;gap:.3rem;padding-block:.85rem;border-bottom:1px solid var(--line)}
+.rep:last-child{border-bottom:0}
+.rep p{font-size:.98rem}
+.rep-title{font-size:1.06rem;font-weight:700;color:var(--ink);line-height:1.35}
+a.rep-title{text-decoration:none}
+a.rep-title::after{content:" PDF \2197";font-size:.78rem;font-weight:400;color:var(--accent);white-space:nowrap}
+a.rep-title:hover{color:var(--accent);text-decoration:underline}
+.rep-meta{display:flex;flex-wrap:wrap;gap:.1rem 1rem;font-size:.88rem;color:var(--muted);font-style:italic}
+
+/* Certifications, awards, contact */
+.certs{list-style:none;margin:0;padding:0;display:grid}
+.certs li{display:grid;grid-template-columns:1fr auto;gap:.1rem 1rem;padding-block:.75rem;border-bottom:1px solid var(--line)}
+.certs li:last-child{border-bottom:0}
+.certs a{font-weight:700;color:var(--ink);text-decoration:none;min-width:0}
+.certs a::after{content:" \2197";font-weight:400;color:var(--accent)}
+.certs a:hover{color:var(--accent);text-decoration:underline}
+.certs .issuer{grid-column:1;font-size:.95rem;color:var(--muted);font-style:italic}
+.certs .date{grid-column:2;grid-row:1;font-size:.92rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:1rem}
+td{padding:.6rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+td:last-child{color:var(--muted);white-space:nowrap;text-align:right}
+.skillrow{display:grid;gap:.4rem}
+.contact-list{display:grid;gap:1rem;max-width:40rem}
+.contact-row{display:grid;grid-template-columns:8rem 1fr;gap:.3rem 1rem;align-items:baseline;padding-bottom:.9rem;border-bottom:1px solid var(--line)}
+.contact-row > span:first-child{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact-row div{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;min-width:0;overflow-wrap:anywhere}
+.copy{font:inherit;font-size:.85rem;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:.15rem .6rem;cursor:pointer;border-radius:2px}
+.copy:hover{border-color:var(--accent)}
+
+footer{border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+footer .inner{padding-block:1.2rem 2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem}
+
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr;gap:1.2rem}
+  .avatar{width:6rem;font-size:1.8rem}
+  .facts,.proj-grid{grid-template-columns:1fr}
+  .contact-row{grid-template-columns:1fr}
+  section h2{font-size:1.6rem}
+}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="#about">Muhammad Abdullah Zafar Ghauri<small>Mechanical Engineering · NUST, Islamabad</small></a>
+    <nav class="ribbon" aria-label="Sections">
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#publications">Publications</a><a href="#under-review">Under review</a><a href="#reports">Reports</a><a href="#community-service">Community service</a><a href="#leadership">Leadership</a><a href="#conferences">Conferences</a><a href="#certifications">Certifications</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="inner">
+  <section id="about">
+    <div>
+      <div class="hero">
+        <div class="avatar" aria-hidden="true">AG</div>
+        <div>
+          <h1>Muhammad Abdullah Zafar Ghauri</h1>
+          <p class="tag">Thermal Engineer at Sinkpath · B.E. Mechanical Engineering, National University of Sciences and Technology (NUST), Islamabad</p>
+          <div class="chips">
+            <span class="chip">Heat transfer</span><span class="chip">Fluid mechanics</span><span class="chip">Physics-informed machine learning</span><span class="chip">Lie symmetry analysis</span><span class="chip">Energy systems</span>
+          </div>
+          <div class="profiles"><a href="https://scholar.google.com/citations?user=k1deaPoAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><a href="https://orcid.org/0009-0009-0714-2697" target="_blank" rel="noopener">ORCID</a><a href="https://www.researchgate.net/profile/Muhammad-Abdullah-Zafar-Ghauri" target="_blank" rel="noopener">ResearchGate</a><a href="https://www.linkedin.com/in/muhammad-abdullah-zafar-ghauri-5993b22b7" target="_blank" rel="noopener">LinkedIn</a><a href="#contact">Email</a></div>
+        </div>
+      </div>
+
+      <div class="bio">
+        <p>I am a mechanical engineer working where heat transfer, fluid mechanics and scientific machine learning meet. Much of my research uses Lie symmetry analysis to reduce the equations of non-Newtonian, magnetohydrodynamic and boundary-layer flows to forms that can be solved exactly, and then tests those solutions against physics-informed neural networks, the Deep Galerkin Method and spectral solvers.</p>
+        <p>Alongside this analytical work I have run experiments on flow-induced piezoelectric energy harvesters, field-tested cooling for solar panels, and written reviews on green hydrogen, maritime biofuels and data center cooling. I now model data center cooling from chip to facility as a Thermal Engineer at Sinkpath.</p>
+        <p>Outside the lab I have led publications teams for ASME, IMechE and NUST university events, and completed community service projects teaching engineering to young girls and running a Ramadan iftar drive.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>5</strong><span class="label">Journal articles</span></div>
+        <div class="stat"><strong>2</strong><span class="label">Book chapters</span></div>
+        <div class="stat"><strong>6</strong><span class="label">Manuscripts under review</span></div>
+        <div class="stat"><strong>32</strong><span class="label">Research reports</span></div>
+      </div>
+
+      <div class="facts">
+        <div class="fact">
+          <h3>Education</h3>
+          <p>B.E. Mechanical Engineering, School of Mechanical and Manufacturing Engineering, NUST</p>
+          <div class="meta"><span>2022 – 2026</span><span>Islamabad, Pakistan</span></div>
+          <p style="margin-top:.4rem">Dissertation: <i>Numerical Modeling and Experimental Investigation of a Thermodiffusive Desalination System</i>, supervised by Dr. Muhammad Asad Javed.</p>
+        </div>
+        <div class="fact">
+          <h3>Current position</h3>
+          <p>Thermal Engineer, Sinkpath</p>
+          <div class="meta"><span>Oct 2026 – Present</span><span>Texas, United States</span></div>
+          <p style="margin-top:.4rem">Chip-to-facility modeling of hybrid air and liquid data center cooling.</p>
+        </div>
+      </div>
+
+      <div class="explore" aria-label="Explore">
+        <a href="#publications">Read my publications</a><a href="#experience">See my research experience</a><a href="#projects">Browse projects</a><a href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="label">Experience</span>
+    <div>
+      <h2>Industry and research experience</h2>
+
+      <h3 class="group">Industry <span class="label">1</span></h3>
+      <article class="entry">
+        <h3>Thermal Engineer, Sinkpath</h3>
+        <div class="meta"><span>Oct 2026 – Present</span><span>Texas, United States</span></div>
+        <ul class="sub">
+          <li>Build chip-to-facility models of data center cooling covering chip-to-coolant thermal resistance, ε-NTU heat exchangers, an R-134a compressor, cooling-tower water use and exergy, run as full-year (8,760-hour) simulations.</li>
+          <li>Extended a published economizer study into a hybrid air and liquid chilled-water model, and identified the hours when heat rejection should bypass the chiller.</li>
+          <li>Built validation cases that reproduce published cold-plate temperatures within 0.05 K and meet ASHRAE Guideline 14, with chiller part-load energy within 4.6% of DOE-2.</li>
+        </ul>
+      </article>
+
+      <h3 class="group">Research <span class="label">5</span></h3>
+      <article class="entry">
+        <h3>Research Assistant, Thermal and Energy Systems</h3>
+        <div class="meta"><span>Oct 2024 – Aug 2026</span><span>SMME, NUST</span></div>
+        <p class="sup">Supervisor: <b>Dr. Muhammad Asad Javed</b>, Assistant Professor, SMME, NUST · Research advisor and final-year project supervisor</p>
+        <div class="pdfs"><a href="https://scholar.google.com/citations?user=j3aThkQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><a href="https://smme.nust.edu.pk/faculty/asad-javed/" target="_blank" rel="noopener">SMME profile</a></div>
+        <ul class="sub">
+          <li>Tested photovoltaic panels under different cooling methods, raising efficiency by 12–14% for polycrystalline and 9–11% for monocrystalline panels, with results checked against numerical models.</li>
+          <li>Ran lifecycle and well-to-wake emissions assessments for alternative fuels and energy systems.</li>
+          <li>Final-year dissertation: <i>Numerical Modeling and Experimental Investigation of a Thermodiffusive Desalination System</i>, which uses low-grade heat to produce fresh water from saline sources.</li>
+        </ul>
+        <p class="outcome"><b>Outputs</b>Natural convection stability paper (<i>Int. Commun. Heat Mass Transfer</i>), PV cooling paper (<i>Next Research</i>, accepted), two accepted book chapters, and the liquid-metal heat transfer manuscript under review.</p>
+      </article>
+
+      <article class="entry">
+        <h3>Summer Research Intern, Analytical and Physics-Informed Fluid Mechanics</h3>
+        <div class="meta"><span>Jul 2024 – Sep 2026</span><span>SMME, NUST</span></div>
+        <p class="sup">Supervisor: <b>Dr. Muhammad Safdar</b>, Associate Professor, SMME, NUST</p>
+        <div class="pdfs"><a href="https://smme.nust.edu.pk/faculty/muhammad-safdar-1/" target="_blank" rel="noopener">SMME profile</a><a href="https://www.researchgate.net/profile/Muhammad-Safdar-18" target="_blank" rel="noopener">ResearchGate</a></div>
+        <ul class="sub">
+          <li>Studied Maxwell, Casson, second-grade and magnetohydrodynamic flows over stretching sheets, flat plates and channels, deriving Lie similarity transformations for the governing equations.</li>
+          <li>Built automated solvers in Maple and Python using homotopy methods, Runge–Kutta–Fehlberg, the Deep Galerkin Method and physics-informed neural networks to cross-check analytical and numerical results.</li>
+        </ul>
+        <p class="outcome"><b>Outputs</b>Papers in <i>Nonlinear Science</i> and <i>Int. Commun. Heat Mass Transfer</i>, plus four manuscripts under review.</p>
+      </article>
+
+      <article class="entry">
+        <h3>Research Assistant, Fluid Visualization Lab</h3>
+        <div class="meta"><span>Jul 2024 – Jul 2025</span><span>NUST</span></div>
+        <p class="sup">Supervisor: <b>Dr. Emad Uddin</b>, Associate Dean, SMME, NUST</p>
+        <div class="pdfs"><a href="https://scholar.google.com/citations?user=EFyJTjkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
+        <ul class="sub">
+          <li>Designed, tested and validated piezoelectric energy harvesters behind different bluff bodies, analysing water-tunnel and particle image velocimetry data in MATLAB.</li>
+          <li>Identified an inverted C-cut cylinder (120° cut angle) as the best bluff body, giving 66% more power than the alternatives.</li>
+        </ul>
+        <p class="outcome"><b>Outputs</b>Co-authored paper in <i>Energy</i> (2026).</p>
+      </article>
+
+      <article class="entry">
+        <h3>Summer Research Intern, Computational Aeronautics Lab</h3>
+        <div class="meta"><span>Jul – Sep 2025</span><span>School of Interdisciplinary Engineering and Sciences, NUST</span></div>
+        <ul class="sub">
+          <li>Ran a multidisciplinary aircraft design study across 11 candidate designs, with an 8-phase mission simulation, NACA 64(2)-415 airfoil optimization and CFD on a 6.7-million-cell mesh (k-ω SST).</li>
+          <li>Cut cruise fuel burn by 1% with particle swarm optimization, and validated the 2D design at a maximum lift-to-drag ratio of 260.3 and minimum drag coefficient of 0.00375 in MATLAB and ANSYS.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <h3>REYES Remote Research Intern, University of California, Berkeley</h3>
+        <div class="meta"><span>Jun – Jul 2025</span><span>Remote</span></div>
+        <ul class="sub">
+          <li>Modelled magnetism with the 1D Ising model, computing energies of aligned and anti-aligned spin configurations to study magnetization and phase transitions.</li>
+          <li>Analysed particle physics data on neutrino mass and beta decay within the Standard Model, applying relativistic energy and momentum conservation.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="label">Projects</span>
+    <div>
+      <h2>Engineering projects</h2>
+      <div class="proj-grid">
+        <article class="proj">
+          <div class="proj-head"><span class="venue">Sinkpath</span><span class="date">Oct 2026 – Present</span></div>
+          <h3>Chip-to-facility hybrid air/liquid data center cooling</h3>
+          <p>Extended a published 8,760-hour economizer study into a full chip-to-facility model with part-load economizers, ε-NTU heat exchangers, an R-134a compressor and a hybrid air/liquid chilled-water loop. Energy and exergy balances close to machine precision and show which hours should skip the chiller.</p>
+          <div class="chips"><span class="chip">Thermodynamics</span><span class="chip">Exergy</span><span class="chip">Data centers</span></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">MATLAB</span><span class="date">Apr – May 2025</span></div>
+          <h3>Preliminary design and analysis of an axial compressor</h3>
+          <p>Designed a single-stage axial compressor and matching turbine stage for a gas turbine with 1155 K turbine inlet, reaching a 3.3 pressure ratio at 0.74 kg/s. Worked through velocity triangles and Euler's equation, with a sensitivity analysis to reduce aerodynamic losses.</p>
+          <p class="team">Individual report · Supervisor: Dr. Zaib Ali</p>
+          <div class="chips"><span class="chip">Turbomachinery</span><span class="chip">Gas turbines</span></div>
+          <div class="pdfs"><a href="axial-compressor-turbine-design.pdf" target="_blank" rel="noopener">Report PDF · 77 pp</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">Psychrometrics</span><span class="date">Mar – May 2025</span></div>
+          <h3>Thermal and HVAC load analysis using the Radiant Load Factor method</h3>
+          <p>Calculated heating and cooling loads for a three-storey house in Rawalpindi, covering windows, envelope, equipment, ventilation and latent loads, in line with ASHRAE standards. Zoned the system to avoid oversizing, targeting ±5% accuracy.</p>
+          <p class="team">Team of 5 · Supervisor: Dr. Waqas Khalid</p>
+          <div class="chips"><span class="chip">HVAC</span><span class="chip">ASHRAE</span><span class="chip">Building energy</span></div>
+          <div class="pdfs"><a href="hvac-rlf-load-analysis.pdf" target="_blank" rel="noopener">Report PDF · 57 pp</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">SOLIDWORKS</span><span class="date">Dec 2024</span></div>
+          <h3>Design and analysis of a crossplane 4200 cc V8 engine</h3>
+          <p class="team">Team of 4 · Supervisor: Dr. Abdullah Jamil</p>
+          <p>Modelled a crossplane V8 crank assembly based on the Maserati F136 R engine, part by part, with 92 mm bore and 79.6 mm stroke. Then ran a static stress analysis of the pistons under peak combustion pressure.</p>
+          <div class="chips"><span class="chip">CAD</span><span class="chip">Stress analysis</span><span class="chip">Engines</span></div>
+          <div class="pdfs"><a href="crossplane-v8-engine.pdf" target="_blank" rel="noopener">Report PDF · 14 pp</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">MATLAB</span><span class="date">May 2024</span></div>
+          <h3>Brayton cycle power plant with waste heat recovery</h3>
+          <p class="team">Team of 6</p>
+          <p>Designed a regenerative Brayton cycle with intercooling, reheating and waste heat recovery to supply power and heating to a 35-storey office building in Lahore, comparing ideal and real configurations across climates.</p>
+          <div class="chips"><span class="chip">Power cycles</span><span class="chip">Waste heat</span></div>
+          <div class="pdfs"><a href="brayton-cycle-waste-heat.pdf" target="_blank" rel="noopener">Report PDF · 10 pp</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">MATLAB</span><span class="date">Apr – May 2024</span></div>
+          <h3>Analysis and optimization of a Rankine cycle</h3>
+          <p class="team">Team of 7</p>
+          <p>Simulated a Rankine cycle to find the boiler and condenser pressures that maximize efficiency, then added superheating, reheating and regeneration, with T-s and P-h diagrams.</p>
+          <div class="chips"><span class="chip">Power cycles</span><span class="chip">Optimization</span></div>
+          <div class="pdfs"><a href="rankine-cycle-optimization.pdf" target="_blank" rel="noopener">Report PDF · 19 pp</a></div>
+        </article>
+        <article class="proj">
+          <div class="proj-head"><span class="venue">Ansys Fluent</span><span class="date">Mar – May 2024</span></div>
+          <h3>CFD of the NACA 64A-206 airfoil in supersonic flow</h3>
+          <p class="team">Individual report</p>
+          <p>Simulated lift, drag and shock waves across Reynolds numbers and angles of attack using the k-ω and Spalart–Allmaras turbulence models.</p>
+          <div class="chips"><span class="chip">CFD</span><span class="chip">Aerodynamics</span></div>
+          <div class="pdfs"><a href="naca-64a-206-supersonic-cfd.pdf" target="_blank" rel="noopener">Report PDF · 22 pp</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <span class="label">Publications</span>
+    <div>
+      <h2>Journal articles and preprints</h2>
+      <div class="stats">
+        <div class="stat"><strong>5</strong><span class="label">Peer-reviewed articles</span></div>
+        <div class="stat"><strong>2</strong><span class="label">Book chapters, accepted</span></div>
+        <div class="stat"><strong>2</strong><span class="label">Preprints</span></div>
+      </div>
+
+      <h3 class="group">Peer-reviewed <span class="label">5</span></h3>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Next Research · Accepted Nov 2026</span><span class="role">Second author</span></div>
+        <h4>Field evaluation and energy gain modeling of photovoltaic modules coupled with evaporative and convective cooling</h4>
+        <p class="authors">M.H. Iqbal, <b>M.A.Z. Ghauri</b>, M.S. Nawaz, M.S. Mustafa, A.A. Zaidi, M.A. Javed</p>
+        <p class="summary">Field tests of solar panels with evaporative and convective cooling, backed by an energy-gain model. Cooling raised efficiency by 12–14% for polycrystalline and 9–11% for monocrystalline panels.</p>
+        <p class="ref"><i>Next Research</i> · Accepted 2 November 2026 · DOI to follow</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Int. Commun. Heat Mass Transfer · 2026</span><span class="role first">First author</span></div>
+        <h4>Parametric instability landscapes and regime classification of laminar natural convection over a vertical plate under mixed thermal boundary conditions: A von Kármán–Pohlhausen linear-stability study</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M.A. Zeeshan, M. Safdar, M.A. Javed</p>
+        <p class="summary">Maps when the airflow rising along a heated wall becomes unstable, for walls that sit between the two textbook heating cases. Uses Orr–Sommerfeld stability analysis and physics-informed neural networks to sort the behaviour into three instability regimes.</p>
+        <p class="ref"><i>International Communications in Heat and Mass Transfer</i> 180 (2026) 112622 · <a class="doi" href="https://doi.org/10.1016/j.icheatmasstransfer.2026.112622" target="_blank" rel="noopener">doi:10.1016/j.icheatmasstransfer.2026.112622</a></p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Nonlinear Science · 2026</span><span class="role first">First &amp; corresponding author</span></div>
+        <h4>Comparative investigation of machine learning and semi-analytical frameworks for magnetohydrodynamic flow characteristics of Maxwell fluid in parallel-plate channel using Lie similarity transformation</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M. Safdar</p>
+        <p class="summary">Compares two deep-learning solvers (PINNs and the Deep Galerkin Method) against classical methods for a magnetically controlled viscoelastic flow. The Deep Galerkin Method matched the reference solution to within 0.01% near the walls.</p>
+        <p class="ref"><i>Nonlinear Science</i> 9 (2026) 100202 · <a class="doi" href="https://doi.org/10.1016/j.nls.2026.100202" target="_blank" rel="noopener">doi:10.1016/j.nls.2026.100202</a></p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Int. Commun. Heat Mass Transfer · 2026</span><span class="role">Corresponding author</span></div>
+        <h4>Coupled Lie symmetry reductions and Physics-Informed Neural Network validation for flow and heat transfer in Maxwell liquid film</h4>
+        <p class="authors">M. Safdar, <b>M.A.Z. Ghauri</b>, S. Taj, N. Afzal, I. Hussain</p>
+        <p class="summary">Reduces the equations for a thin viscoelastic film on a stretching sheet with Lie symmetry analysis, solves them with the homotopy perturbation method, and checks the result independently with a physics-informed neural network.</p>
+        <p class="ref"><i>International Communications in Heat and Mass Transfer</i> 178 (2026) 111586 · <a class="doi" href="https://doi.org/10.1016/j.icheatmasstransfer.2026.111586" target="_blank" rel="noopener">doi:10.1016/j.icheatmasstransfer.2026.111586</a></p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Energy · 2026</span><span class="role">Co-author</span></div>
+        <h4>Optimizing enclosure geometry for enhanced energy conversion in flow-induced piezoelectric energy harvesters</h4>
+        <p class="authors">A. Naveed, E. Uddin, U. Latif, M.Y. Younis, Z. Ali, H.M.M. Rehman, M.M. Shah, <b>M.A.Z. Ghauri</b>, B.A. Chuddher</p>
+        <p class="summary">Experiments with a flexible piezoelectric "flag" that generates power from flowing water inside a duct, using particle image velocimetry. An inverted C-shaped cylinder upstream and an enclosure aspect ratio of 0.75 gave the most power.</p>
+        <p class="ref"><i>Energy</i> 345 (2026) 140241 · <a class="doi" href="https://doi.org/10.1016/j.energy.2026.140241" target="_blank" rel="noopener">doi:10.1016/j.energy.2026.140241</a></p>
+      </article>
+
+      <h3 class="group">Book chapters <span class="label">2 · Accepted</span></h3>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Book chapter · Accepted · 2027</span><span class="role first">First author</span></div>
+        <h4>From reservoirs to fuel cells: the role of hydropower in scaling green energy</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M.K. Shahid, I. Zahid, A.A. Hassan, M.A. Javed</p>
+        <p class="summary">Reviews how hydropower's steady, low-cost electricity can run electrolyzers for green hydrogen, bringing costs to $1.5–3 per kg at favourable sites.</p>
+        <p class="ref">In <i>Handbook of Sustainability of Chemical Processes</i> · Expected March 2027 · DOI to follow</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Book chapter · Accepted · 2027</span><span class="role first">First author</span></div>
+        <h4>Maritime biofuels as transitional fuels: bridging the gap to zero-carbon shipping</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, A.A. Zaidi, M.H. Iqbal, M.Y. Javaid, A.A. Hassan, M.A. Javed</p>
+        <p class="summary">Assesses biofuels as a bridge to zero-carbon shipping. Waste-derived biodiesel and renewable diesel cut emissions by 68–98% compared with heavy fuel oil, and the chapter sets out a 2025–2050 transition roadmap.</p>
+        <p class="ref">In <i>Handbook of Sustainability of Chemical Processes</i> · Expected March 2027 · DOI to follow</p>
+      </article>
+
+      <h3 class="group">Preprints <span class="label">2 · SSRN</span></h3>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">SSRN preprint · Oct 2026</span><span class="role">Second author</span></div>
+        <h4>Data center cooling in the Gulf states: a review of climate constraints, deployment, energy, and water</h4>
+        <p class="authors">M. Usama, <b>M.A.Z. Ghauri</b>, A. Oswal</p>
+        <p class="summary">The first review to bring together climate, deployment, power, cooling, water and waste-heat data for data centers in the six Gulf states. It finds warm-water liquid cooling the most promising way to avoid both chillers and water use for most of the year.</p>
+        <p class="ref">With The University of Texas at Austin · <a class="doi" href="https://ssrn.com/abstract=7650703" target="_blank" rel="noopener">ssrn.com/abstract=7650703</a></p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">SSRN preprint · Aug 2026</span><span class="role">Second author</span></div>
+        <h4>Where to treat the ground: optimal placement and coverage of reflective ground treatment in bifacial photovoltaic plants</h4>
+        <p class="authors">M. Usama, <b>M.A.Z. Ghauri</b>, J. Bendetti, M.A. Mahesar, O.E. Tunca, Y. Yildirim</p>
+        <p class="summary">Models where to put reflective ground cover under two-sided solar panels and when it pays off. For a 1 MW plant near Dallas, treating the most responsive half of the ground captures 65% of the benefit for 50% of the cost.</p>
+        <p class="ref">With The University of Texas at Austin and Rice University · <a class="doi" href="https://ssrn.com/abstract=7310839" target="_blank" rel="noopener">ssrn.com/abstract=7310839</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="under-review">
+    <span class="label">Under Review</span>
+    <div>
+      <h2>Current research</h2>
+      <p>Manuscripts submitted and currently in peer review.</p>
+
+      <h3 class="group">Journal manuscripts <span class="label">6</span></h3>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review</span><span class="role first">First author</span></div>
+        <h4>Unified Graetz-type solutions for thermal entry region heat transfer of liquid metals under slug flow with volumetric internal heat generation and PINN validation</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M. Safdar, K.F. Iqbal, M.A. Javed</p>
+        <p class="summary">Exact solutions for liquid-metal coolants heating up in tubes, channels and annular ducts with internal heat generation, as in fusion blankets and Generation-IV reactors. Physics-informed neural networks confirm the solutions and also recover unknown heat sources.</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review</span><span class="role first">First &amp; corresponding author</span></div>
+        <h4>Lie symmetry analysis and physics-informed investigation of Casson fluid over elongated sheet subjected to thermal radiation</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M.T. Nasir, M.Z. ul Abideen</p>
+        <p class="summary">Derives the governing equations for a non-Newtonian fluid over a porous, radiating stretching sheet from symmetry analysis instead of assuming them. Spectral and neural-network solvers agree to within 0.01% in most cases.</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review</span><span class="role first">First &amp; corresponding author</span></div>
+        <h4>Physics-informed investigation of exact solutions for slip flow over flat plate subjected to constant heat flux using Lie symmetry analysis</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M. Safdar</p>
+        <p class="summary">Exact solutions in modified Bessel functions for a heated plate with flow through the wall, cross-checked with a Chebyshev spectral method and a neural network that needs no training data.</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review</span><span class="role first">First author</span></div>
+        <h4>Lie symmetry and physics-informed machine learning analysis of magnetohydrodynamic boundary layer flow about inclined flat plate subjected to convective boundary conditions</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M. Safdar</p>
+        <p class="summary">Magnetically controlled flow over a tilted heated plate, solved four ways. Three methods (PINNs, Deep Galerkin and shooting) agree to within 0.1%, while the homotopy method drifts under strong buoyancy.</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review · Review article</span><span class="role">Second author</span></div>
+        <h4>Data center expansion as a new competitor for agricultural water, energy and land</h4>
+        <p class="authors">M. Usama, <b>M.A.Z. Ghauri</b>, Z. Ali, M.C. Ndukwu</p>
+        <p class="summary">Reviews 61 studies and models how data center growth competes with farming for water and power. Data center water use could reach 1,460 billion liters by 2030, and US demand growth could add USD 150–730 million a year to irrigation pumping costs.</p>
+      </article>
+
+      <article class="pub">
+        <div class="pub-head"><span class="venue">Under review</span><span class="role first">First &amp; corresponding author</span></div>
+        <h4>Lie symmetry and physics-informed machine learning analysis of flow and heat transfer characteristics of a second grade fluid over horizontal stretching sheet subjected to prescribed temperature conditions</h4>
+        <p class="authors"><b>M.A.Z. Ghauri</b>, M. Usama, M.K. Shahid, M. Safdar, A. Aslam</p>
+        <p class="summary">Models an elastic polymer-like fluid over a stretching sheet, as in extrusion and fiber spinning. Four solvers plus exact hypergeometric solutions agree on the heat transfer rate to within 0.013%.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="reports">
+    <span class="label">Research Reports</span>
+    <div>
+      <h2>Self-directed analyses</h2>
+      <p>Short studies I worked through on my own to learn methods in heat transfer, fluid mechanics and mass transport. Several reproduce textbook problems or published results, and the sources are cited in each report. Every report opens as a PDF.</p>
+      <div class="stats">
+        <div class="stat"><strong>32</strong><span class="label">Reports (PDF)</span></div>
+        <div class="stat"><strong>Feb–Aug</strong><span class="label">2025</span></div>
+        <div class="stat"><strong>4</strong><span class="label">Tools: MATLAB, Maple, Octave, EES</span></div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter reports by topic">
+        <button type="button" class="filter" data-f="all" aria-pressed="true">All <span>25</span></button>
+        <button type="button" class="filter" data-f="free" aria-pressed="false">Free convection <span>7</span></button>
+        <button type="button" class="filter" data-f="bl" aria-pressed="false">Boundary layers <span>4</span></button>
+        <button type="button" class="filter" data-f="internal" aria-pressed="false">Internal flow <span>4</span></button>
+        <button type="button" class="filter" data-f="cond" aria-pressed="false">Conduction <span>4</span></button>
+        <button type="button" class="filter" data-f="pde" aria-pressed="false">PDEs &amp; mass transport <span>6</span></button>
+      </div>
+
+      <div class="rep-groups">
+        <div class="rep-group" data-topic="free">
+          <h3 class="group">Free convection <span class="label">7</span></h3>
+          <ul class="reps">
+            <li class="rep"><a class="rep-title" href="similarity-vertical-plate-cwt.pdf" target="_blank" rel="noopener">Similarity solution for laminar boundary layer over a semi-infinite vertical flat plate: constant wall temperature</a>
+              <p>Reduces the governing equations to coupled ODEs. For a 40 × 20 cm plate at 237 °C in 17 °C air, the total heat loss comes to 105.5 W.</p>
+              <div class="rep-meta"><span>Jun 2025</span><span>9 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="similarity-vertical-plate-uhf.pdf" target="_blank" rel="noopener">Similarity solution for laminar boundary layer over a semi-infinite vertical flat plate: uniform heat flux</a>
+              <p>Solved for Prandtl numbers from 0.1 to 100. A 20 cm plate in air converges in three iterations and agrees with Sparrow and Gregg to within 0.55%.</p>
+              <div class="rep-meta"><span>Jun 2025</span><span>10 pp</span></div></li>
+            <li class="rep"><a class="rep-title" href="vkp-free-convection-cwt.pdf" target="_blank" rel="noopener">Approximate analysis of laminar free convection on a vertical plate using the von Kármán–Pohlhausen method: constant wall temperature</a>
+              <p>Integral-method expressions for boundary layer thickness and Nusselt number, checked against a worked example of a heated plate in air.</p>
+              <div class="rep-meta"><span>Jun 2025</span><span>9 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="vkp-free-convection-uhf.pdf" target="_blank" rel="noopener">Approximate analysis of laminar free convection on a vertical plate using the von Kármán–Pohlhausen method: uniform heat flux</a>
+              <p>The same integral method for a plate with uniform heat flux, with a comparison of heat transfer by conduction and by convection.</p>
+              <div class="rep-meta"><span>Jun 2025</span><span>9 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="free-convection-nonuniform-heating.pdf" target="_blank" rel="noopener">Free convection over a vertical plate with non-uniform heating</a>
+              <p>Wall temperature varying as T<sub>s</sub> − T<sub>∞</sub> = Axⁿ. Similarity variables reduce the problem to a stream-function ODE and an energy ODE.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>6 pp</span></div></li>
+            <li class="rep"><a class="rep-title" href="free-convection-parallel-plate-channels.pdf" target="_blank" rel="noopener">Free convection within parallel plate channels: horizontal and vertical configuration</a>
+              <p>Natural convection between fins for isothermal and uniform-flux walls, across spacing-to-length ratios, compared with empirical correlations.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>11 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="free-convection-vertical-cylinder.pdf" target="_blank" rel="noopener">Empirical correlations for free convection: vertical cylinder</a>
+              <p>Laminar and turbulent correlations for uniform wall temperature and uniform heat flux, recomputing fluid properties at the film temperature on each iteration.</p>
+              <div class="rep-meta"><span>Jun 2025</span><span>9 pp</span><span>MATLAB</span></div></li>
+          </ul>
+        </div>
+
+        <div class="rep-group" data-topic="bl">
+          <h3 class="group">Boundary layers <span class="label">4</span></h3>
+          <ul class="reps">
+            <li class="rep"><a class="rep-title" href="blasius-velocity-boundary-layer.pdf" target="_blank" rel="noopener">Similarity solution for velocity boundary layer over a semi-infinite flat plate</a>
+              <p>Numerical solution of the Blasius equation for displacement thickness, momentum thickness and skin friction, validated against the experiments of Junkhan and Serovy.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>12 pp</span><span>Maple</span></div></li>
+            <li class="rep"><a class="rep-title" href="falkner-skan-wedge-flow.pdf" target="_blank" rel="noopener">Similarity solution for momentum transfer over Falkner–Skan wedge flow</a>
+              <p>Velocity profiles, boundary layer thicknesses and wall shear stress for flow past a wedge, relevant to stagnation points and bluff bodies.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>9 pp</span><span>Maple</span></div></li>
+            <li class="rep"><a class="rep-title" href="high-prandtl-flat-plate.pdf" target="_blank" rel="noopener">Similarity solution for uniform wall temperature in high-Prandtl-number flow over a semi-infinite flat plate</a>
+              <p>Heat transfer to oils and other viscous fluids. Recovers the Pr<sup>1/3</sup> scaling with coefficients of 0.3387 (local) and 0.678 (average Nusselt number).</p>
+              <div class="rep-meta"><span>Aug 2025</span><span>4 pp</span></div></li>
+            <li class="rep"><span class="rep-title">Analysis of fluid flow over a flat plate using the Navier–Stokes and continuity equations</span>
+              <p>Finite-difference solution of the velocity and temperature fields over a plate, with and without heat flux, showing the boundary layer forming.</p>
+              <div class="rep-meta"><span>Feb 2025</span><span>MATLAB</span></div>
+              <div class="pdfs"><a href="navier-stokes-flat-plate-v1.pdf" target="_blank" rel="noopener">First version · 11 pp</a><a href="navier-stokes-flat-plate-v2.pdf" target="_blank" rel="noopener">Revised, with M.K. Shahid · 8 pp</a></div></li>
+          </ul>
+        </div>
+
+        <div class="rep-group" data-topic="internal">
+          <h3 class="group">Internal flow <span class="label">4</span></h3>
+          <ul class="reps">
+            <li class="rep"><span class="rep-title">An analytical approach to heat transfer for slug flow in the entrance region</span>
+              <p>Four cases solved by separation of variables, using Bessel functions for the tube. The tube Nusselt numbers approach 5.783 at constant wall temperature and 8 at constant heat flux.</p>
+              <div class="rep-meta"><span>2025</span><span>4 reports</span><span>MATLAB</span></div>
+              <div class="pdfs"><a href="slug-flow-tube-cwt.pdf" target="_blank" rel="noopener">Tube, constant wall temp · 9 pp</a><a href="slug-flow-tube-chf.pdf" target="_blank" rel="noopener">Tube, constant heat flux · 8 pp</a><a href="slug-flow-plates-cwt.pdf" target="_blank" rel="noopener">Plates, constant wall temp · 7 pp</a><a href="slug-flow-plates-chf.pdf" target="_blank" rel="noopener">Plates, constant heat flux · 11 pp</a></div></li>
+            <li class="rep"><a class="rep-title" href="couette-flow.pdf" target="_blank" rel="noopener">One-dimensional solutions in convective heat transfer: heat transfer in Couette flow</a>
+              <p>Velocity, temperature, Nusselt number and friction factor between a moving and a fixed plate, as functions of the Brinkman and Eckert numbers.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>6 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="circular-couette-flow.pdf" target="_blank" rel="noopener">One-dimensional convective heat transfer for rotating flows: heat transfer in circular Couette flow</a>
+              <p>Viscous heating between a rotating inner cylinder and a fixed outer one, showing the temperature rise near the inner wall.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>7 pp</span><span>Octave</span></div></li>
+            <li class="rep"><span class="rep-title">One-dimensional solutions in convective heat transfer: heat transfer in Poiseuille flow</span>
+              <p>Pressure-driven flow between fixed plates with viscous dissipation, solved for two sets of wall conditions.</p>
+              <div class="rep-meta"><span>Jul 2025</span><span>MATLAB</span></div>
+              <div class="pdfs"><a href="poiseuille-flow-heated-walls.pdf" target="_blank" rel="noopener">Walls at two temperatures · 6 pp</a><a href="poiseuille-flow-insulated-wall.pdf" target="_blank" rel="noopener">One wall insulated · 6 pp</a></div></li>
+          </ul>
+        </div>
+
+        <div class="rep-group" data-topic="cond">
+          <h3 class="group">Conduction <span class="label">4</span></h3>
+          <ul class="reps">
+            <li class="rep"><a class="rep-title" href="flux-meter.pdf" target="_blank" rel="noopener">Analytical solution analysis of heat transfer through a flux meter</a>
+              <p>Temperature in a thin plate with radiation loss and contact resistance, a calibration curve for heat flux, and the measurement uncertainty.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>6 pp</span><span>EES, Maple</span></div></li>
+            <li class="rep"><a class="rep-title" href="welding-plate-liquid-cooling.pdf" target="_blank" rel="noopener">Analysis of surface temperature on welding plates using aggressive liquid cooling</a>
+              <p>Laplace equation with a position-dependent heat flux on top and jet cooling below, solved by eigenfunction expansion.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>5 pp</span></div></li>
+            <li class="rep"><a class="rep-title" href="circular-fin.pdf" target="_blank" rel="noopener">Heat distribution on a circular fin</a>
+              <p>Transient fin temperature by finite differences and by MATLAB's pdepe solver, with the two compared.</p>
+              <div class="rep-meta"><span>Mar 2025</span><span>9 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><span class="rep-title">Heat transfer in a rod</span>
+              <p>Transient conduction by an implicit finite-difference scheme, for two different starting temperature profiles.</p>
+              <div class="rep-meta"><span>Feb 2025</span><span>MATLAB</span></div>
+              <div class="pdfs"><a href="rod-uniform-initial.pdf" target="_blank" rel="noopener">Uniform start · 6 pp</a><a href="rod-sinusoidal-initial.pdf" target="_blank" rel="noopener">Sinusoidal start · 5 pp</a></div></li>
+          </ul>
+        </div>
+
+        <div class="rep-group" data-topic="pde">
+          <h3 class="group">PDEs &amp; mass transport <span class="label">6</span></h3>
+          <ul class="reps">
+            <li class="rep"><a class="rep-title" href="burgers-equation.pdf" target="_blank" rel="noopener">Analytical and numerical solution of Burgers' equation</a>
+              <p>The viscous 1D equation with a sinusoidal start, solved by Fourier series and by finite differences, and the two compared over time.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>6 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><span class="rep-title">Solution of multi-system advection–diffusion partial differential equations</span>
+              <p>A three-species axial dispersion system with reactions, solved two ways.</p>
+              <div class="rep-meta"><span>Mar 2025</span><span>MATLAB</span></div>
+              <div class="pdfs"><a href="advection-diffusion-pdepe.pdf" target="_blank" rel="noopener">With pdepe · 7 pp</a><a href="advection-diffusion-danckwerts.pdf" target="_blank" rel="noopener">Finite differences, Danckwerts conditions · 7 pp</a></div></li>
+            <li class="rep"><a class="rep-title" href="fixed-bed-reactor.pdf" target="_blank" rel="noopener">Solution of a fixed-bed reactor PDE using Danckwerts boundary conditions</a>
+              <p>Concentration through a catalyst bed by finite differences, showing the effect of the Péclet and Damköhler numbers.</p>
+              <div class="rep-meta"><span>3 pp</span><span>MATLAB</span></div></li>
+            <li class="rep"><a class="rep-title" href="adsorption-langmuir-bet.pdf" target="_blank" rel="noopener">Equations of transport of multi-component adsorption with Langmuir and BET isotherms</a>
+              <p>Transport equations for adsorption in a packed column under two isotherm models.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>9 pp</span></div></li>
+            <li class="rep"><a class="rep-title" href="breakthrough-curve-silver-capture.pdf" target="_blank" rel="noopener">Breakthrough curve for adsorption of thiol-functionalized silica mixed matrix membranes for silver capture</a>
+              <p>A PDE model of silver capture from water, solved by finite differences, with Monte Carlo runs for the spread of breakthrough times.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>8 pp</span></div></li>
+            <li class="rep"><a class="rep-title" href="vortex-surface-interaction.pdf" target="_blank" rel="noopener">Fluid–surface interaction of vortices</a>
+              <p>Vortices formed by flow at 0.2 m/s inside a closed box with no-slip walls.</p>
+              <div class="rep-meta"><span>Apr 2025</span><span>10 pp</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community-service">
+    <span class="label">Community Service</span>
+    <div>
+      <h2>Community service learning</h2>
+      <p>Two team projects completed for the Community Service Learning course (CSL-401) at NUST, each run with a local non-profit partner and recognised with a letter of acknowledgment.</p>
+      <div class="stats">
+        <div class="stat"><strong>60</strong><span class="label">Service hours</span></div>
+        <div class="stat"><strong>83</strong><span class="label">Girls taught</span></div>
+        <div class="stat"><strong>100+</strong><span class="label">People served iftar</span></div>
+      </div>
+      <article class="entry">
+        <h3>Empowering Young Girls Through Learning</h3>
+        <div class="meta"><span>Apr 2025</span><span>With Crossadder Foundation</span><span>IMCG F-10/3, Islamabad</span></div>
+        <p>Three hands-on engineering sessions for 83 girls aged 9 to 12 from low-income families. The girls built bridges from paper and tape, made structures from clay and bamboo sticks, and tested stability with Jenga towers.</p>
+        <p class="outcome"><b>My role</b>Designed the visuals and teaching materials, planned refreshments and prepared the final session.</p>
+      </article>
+      <article class="entry">
+        <h3>Iftar and Ration Drive</h3>
+        <div class="meta"><span>11 Mar 2025</span><span>With Bunyaad Islamabad</span><span>F-7 Rana Market, Islamabad</span></div>
+        <p>A Ramadan drive for daily-wage workers and low-income families. The team of six raised PKR 30,000 and served iftar to about 100–120 people at mosques, roadsides and labour gathering points.</p>
+        <p class="outcome"><b>My role</b>Raised funds, arranged the venue, distributed food and helped clean up.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <span class="label">Leadership</span>
+    <div>
+      <h2>Student societies and events</h2>
+      <p>I have led publications teams across engineering societies and university events at NUST, writing the scripts, captions and announcements behind them and hosting ceremonies on stage.</p>
+      <div class="stats">
+        <div class="stat"><strong>4</strong><span class="label">Publications leadership roles</span></div>
+        <div class="stat"><strong>19</strong><span class="label">Executives supervised</span></div>
+        <div class="stat"><strong>2</strong><span class="label">Flagship competitions co-led</span></div>
+      </div>
+
+      <article class="entry">
+        <h3>Director Publications, NUST Career Connect 2026</h3>
+        <div class="meta"><span>2026</span><span>NUST</span></div>
+        <p>Ran the publications portfolio on my own, writing the ceremony scripts, social media captions, video scripts and the scripts for the memorandum of understanding signings. On event day I also volunteered on the ground, supporting the event management and quality assurance teams.</p>
+      </article>
+
+      <article class="entry">
+        <h3>Director Publications, ASME NUST Chapter</h3>
+        <div class="meta"><span>Aug 2024 – May 2026</span><span>American Society of Mechanical Engineers</span></div>
+        <p>Supervised a team of six executives, co-leading with a deputy director.</p>
+        <ul class="sub">
+          <li><b>Deputy Director, EFx'25</b> · Apr 2025. The chapter's flagship engineering competition. Hosted the closing ceremony.</li>
+          <li><b>Deputy Director, EFx 2.0</b> · Dec 2025. Hosted the closing ceremony.</li>
+        </ul>
+      </article>
+
+      <article class="entry">
+        <h3>Director Publications, IMechE NUST Chapter</h3>
+        <div class="meta"><span>Aug 2025 – May 2026</span><span>Institution of Mechanical Engineers</span></div>
+        <p>Led a team of five executives alongside a deputy director. Wrote ceremony scripts and hosted selected ceremonies as master of ceremonies.</p>
+      </article>
+
+      <article class="entry">
+        <h3>Deputy Director Publications, NUST Orientation</h3>
+        <div class="meta"><span>Jul – Sep 2025</span><span>NUST</span></div>
+        <p>Led a team of eight and coordinated with the liaison and event management teams. Wrote the video scripts, ceremony scripts and Instagram captions.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="conferences">
+    <span class="label">Conferences &amp; Workshops</span>
+    <div>
+      <h2>Conferences and workshops</h2>
+      <article class="entry">
+        <h3>Oral presentation, 5th SNAS Interdisciplinary Research Conference</h3>
+        <div class="meta"><span>9–10 Oct 2026</span><span>Society of North American Scholars</span><span>George Mason University (Mason Square), Arlington, VA</span></div>
+        <p>Presented <i>Techno-Economic Optimization of Partial Ground-Albedo Treatment for Fixed-Tilt Bifacial Photovoltaic Plants</i>, based on the bifacial solar preprint.</p>
+      </article>
+      <article class="entry">
+        <h3>DesignFest'24 workshop</h3>
+        <div class="meta"><span>2024</span><span>Virtual</span></div>
+        <p>Attended a workshop by Dr. Manish Kumar, CEO of SOLIDWORKS, on using SOLIDWORKS to design products for healthcare, infrastructure and transport.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <span class="label">Certifications</span>
+    <div>
+      <h2>Professional certifications</h2>
+      <ul class="certs">
+        <li><a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ZKmXF3KcdjzareDQx/MmweKQdz5mu6oK64i_ZKmXF3KcdjzareDQx_hxzMEzsJ8CkCHSv3e_1750967759734_completion_certificate.pdf" target="_blank" rel="noopener">Engineering for New Energy Job Simulation</a><span class="issuer">Forage</span><span class="date">Jun 2025</span></li>
+        <li><a href="https://coursera.org/share/ba9139a23e8eb29bfd9fd9f00de6b74d" target="_blank" rel="noopener">Machine Design Part I</a><span class="issuer">Georgia Institute of Technology</span><span class="date">Jan 2025</span></li>
+        <li><a href="https://coursera.org/share/527709616de551df2dc0b4f6230c5302" target="_blank" rel="noopener">Introduction to Programming with MATLAB</a><span class="issuer">Vanderbilt University</span><span class="date">Nov 2024</span></li>
+        <li><a href="https://coursera.org/share/9ac8e603da55eabfaca10461ffe87dec" target="_blank" rel="noopener">Autodesk Fusion 360 Integrated CAD/CAM/CAE</a><span class="issuer">Autodesk</span><span class="date">Nov 2024</span></li>
+        <li><a href="https://coursera.org/share/41970d985474aaea0b9d777689fad26a" target="_blank" rel="noopener">Particle Physics: an Introduction</a><span class="issuer">University of Geneva</span><span class="date">Oct 2024</span></li>
+        <li><a href="https://coursera.org/share/272791c186871bca7fc95c4aac090473" target="_blank" rel="noopener">Computers, Waves, Simulations: A Practical Introduction to Numerical Methods using Python</a><span class="issuer">Ludwig-Maximilians-Universität München</span><span class="date">Aug 2024</span></li>
+        <li><a href="https://coursera.org/share/df2830f930fb94a1c96cd5bdee98bb10" target="_blank" rel="noopener">Statistical Thermodynamics Specialization</a><span class="issuer">University of Colorado Boulder</span><span class="date">Jul 2024</span></li>
+        <li><a href="https://coursera.org/share/1660f38fb39f45f20ae1370895f0a2f9" target="_blank" rel="noopener">Applied Computational Fluid Dynamics</a><span class="issuer">Siemens</span><span class="date">Jun 2024</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="awards">
+    <span class="label">Awards &amp; Skills</span>
+    <div>
+      <h2>Awards and technical skills</h2>
+      <div class="tw"><table>
+        <tr><td>3rd place nationwide, Oral Competition, ASME EFx NUST 2025, for <i>Harvesting Water from Air: A Sustainable Solar-Powered Radiative Cooling Device</i></td><td>2025</td></tr>
+        <tr><td>Nominated from a cohort of 150 students for the Sky Global Turkish Aerospace internship programme, Ankara (23 Jul – 19 Aug 2025)</td><td>2025</td></tr>
+      </table></div>
+      <div class="skillrow"><span class="label">Programming</span>
+        <div class="chips"><span class="chip">MATLAB</span><span class="chip">Python</span><span class="chip">Maple</span><span class="chip">LaTeX</span></div></div>
+      <div class="skillrow"><span class="label">Simulation</span>
+        <div class="chips"><span class="chip">Ansys Fluent</span><span class="chip">Ansys Static Structural</span><span class="chip">Ansys Thermal</span><span class="chip">COMSOL</span><span class="chip">SimScale</span><span class="chip">EES</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="label">Contact</span>
+    <div>
+      <h2>Get in touch</h2>
+      <p>I am happy to hear about research collaborations, graduate opportunities and engineering roles.</p>
+      <div class="contact-list">
+        <div class="contact-row"><span>Email</span><div><span id="email">mazghauri2004@gmail.com</span><button class="copy" id="copyBtn" type="button">Copy</button></div></div>
+        <div class="contact-row"><span>Google Scholar</span><div><a href="https://scholar.google.com/citations?user=k1deaPoAAAAJ&amp;hl=en" target="_blank" rel="noopener">scholar.google.com/citations?user=k1deaPoAAAAJ</a></div></div>
+        <div class="contact-row"><span>ORCID</span><div><a href="https://orcid.org/0009-0009-0714-2697" target="_blank" rel="noopener">0009-0009-0714-2697</a></div></div>
+        <div class="contact-row"><span>ResearchGate</span><div><a href="https://www.researchgate.net/profile/Muhammad-Abdullah-Zafar-Ghauri" target="_blank" rel="noopener">researchgate.net/profile/Muhammad-Abdullah-Zafar-Ghauri</a></div></div>
+        <div class="contact-row"><span>LinkedIn</span><div><a href="https://www.linkedin.com/in/muhammad-abdullah-zafar-ghauri-5993b22b7" target="_blank" rel="noopener">linkedin.com/in/muhammad-abdullah-zafar-ghauri-5993b22b7</a></div></div>
+        <div class="contact-row"><span>Location</span><div>Islamabad, Pakistan</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner"><span>© 2026 Muhammad Abdullah Zafar Ghauri</span><span>Last updated November 2026</span></div>
+</footer>
+
+<script>
+(function(){
+  var ids=[].map.call(document.querySelectorAll('main > section'),function(s){return s.id});
+  function show(){
+    var id=(location.hash||'').slice(1);
+    if(ids.indexOf(id)<0) id='about';
+    document.querySelectorAll('main > section').forEach(function(s){s.hidden=(s.id!==id)});
+    document.querySelectorAll('.ribbon a').forEach(function(a){
+      if(a.getAttribute('href')==='#'+id){a.setAttribute('aria-current','page');var r=a.parentNode;if(r.scrollWidth>r.clientWidth){r.scrollLeft=a.offsetLeft-r.offsetLeft-24}}
+      else a.removeAttribute('aria-current');
+    });
+    var t=document.querySelector('.ribbon a[aria-current]');
+    document.title=(id==='about'?'':(t?t.textContent+' · ':''))+'Muhammad Abdullah Zafar Ghauri';
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show); show();
+})();
+document.querySelectorAll('.filter').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var f=btn.dataset.f;
+    document.querySelectorAll('.filter').forEach(function(b){b.setAttribute('aria-pressed', b===btn?'true':'false')});
+    document.querySelectorAll('.rep-group').forEach(function(g){g.hidden = !(f==='all' || g.dataset.topic===f)});
+  });
+});
+document.getElementById('copyBtn').addEventListener('click', function(){
+  var btn=this, el=document.getElementById('email'), text=el.textContent.trim();
+  function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)}
+  function fallback(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press Ctrl+C'}
+  try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+});
+</script>
+</body>
+</html>
